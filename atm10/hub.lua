@@ -183,6 +183,14 @@ local PROGRAMS = {
     requires = { "playerDetector" },
     optional = {},
   },
+  {
+    label    = "Geo Scanner",
+    file     = PROG_DIR .. "pocket/geo_scanner.lua",
+    desc     = "Scan underground for ores & minerals",
+    devices  = { "pocket", "advanced_pocket" },
+    requires = { "geoScanner" },
+    optional = {},
+  },
   -- ── Monitor (run from a computer) ─────────────────────────────────
   {
     label    = "Big Display",

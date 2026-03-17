@@ -57,6 +57,7 @@ local FILES = {
   { "/programs/pocket/ender_link.lua",          "/atm10/programs/pocket/ender_link.lua" },
   { "/programs/pocket/portable_wiki.lua",       "/atm10/programs/pocket/portable_wiki.lua" },
   { "/programs/pocket/player_scanner.lua",      "/atm10/programs/pocket/player_scanner.lua" },
+  { "/programs/pocket/geo_scanner.lua",         "/atm10/programs/pocket/geo_scanner.lua" },
 
   -- Monitor programs
   { "/programs/monitor/big_display.lua",        "/atm10/programs/monitor/big_display.lua" },
