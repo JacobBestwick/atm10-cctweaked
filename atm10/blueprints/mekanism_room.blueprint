@@ -1,0 +1,145 @@
+-- mekanism_room.blueprint
+-- ATM10 Mekanism Machine Room Floor Plan
+-- Used by: builder_turtle.lua
+--
+-- A 13x13 walled machine room with:
+--   - Stone brick floor
+--   - 3-tall smooth stone walls
+--   - Glass ceiling for light
+--   - Machine placement pads (quartz blocks)
+--   - Cable channel (bottom row of walls)
+--   - Iron door entrance (south wall center)
+--
+-- This blueprint lays out the shell structure.
+-- Place your Mekanism machines on the quartz pads.
+--
+-- Suggested machine placement:
+--   N row:  Enrichment Chamber, Crusher, Energized Smelter
+--   E row:  Purification Chamber, Chemical Injection Chamber
+--   W row:  Metallurgic Infuser, Osmium Compressor
+--   Center: Electrolytic Separator, Chemical Infuser
+--
+-- Dimensions: 13 wide x 13 deep x 4 tall
+-- Turtle starts at SW corner, ground level, facing North.
+
+return {
+  name        = "Mekanism Machine Room",
+  description = "13x13 walled machine room with quartz machine pads and glass ceiling.",
+  author      = "ATM10 CC:Tweaked Suite",
+  width       = 13,
+  height      = 4,
+  depth       = 13,
+
+  palette = {
+    ["S"] = "minecraft:stone_bricks",
+    ["Q"] = "minecraft:quartz_block",
+    ["G"] = "minecraft:glass",
+    ["W"] = "minecraft:smooth_stone",
+    ["D"] = "minecraft:iron_door",
+    ["L"] = "minecraft:glowstone",
+    ["C"] = "minecraft:polished_blackstone",   -- cable channel marker
+    [" "] = "air",
+    ["F"] = "minecraft:smooth_stone_slab",
+  },
+
+  layers = {
+    -- Layer 0: Floor
+    -- S = stone brick floor, Q = machine pads, C = cable channel border
+    {
+      "SSSSSSSSSSSSS",
+      "SQQQSSSSSQQQS",
+      "SQQQSSSSSQQQS",
+      "SSSSSSSSSSSS S",   -- note: kept 13 chars
+      "SSSSSSSSSSSSS",
+      "SQSSSSSSSSQSS",
+      "SQSSSSSSSSQSS",
+      "SQSSSSSSSSQSS",
+      "SSSSSSSSSSSSS",
+      "SSSSSSSSSSSS S",
+      "SQQQSSSSSQQQS",
+      "SQQQSSSSSQQQS",
+      "SSSSSSSSSSSSS",
+    },
+
+    -- Layer 1: Walls (bottom), open interior, door slot
+    {
+      "WWWWWWWWWWWWW",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "WWWWWW  WWWWW",   -- gap at center for door (X=6,7)
+    },
+
+    -- Layer 2: Walls (middle)
+    {
+      "WWWWWWWWWWWWW",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "W           W",
+      "WWWWWWD DWWWW",   -- door top (2 wide door = 2 chars)
+    },
+
+    -- Layer 3: Ceiling (glass for natural light + glowstone accents)
+    {
+      "GGGGGGGGGGGGG",
+      "GLLGGGGGGGLLG",
+      "GGGGGGGGGGGGG",
+      "GGGGGGGGGGGGG",
+      "GGGGGGGGGGGGG",
+      "GGGGGGGGGGGGG",
+      "GGGGGGGGGGGGG",
+      "GGGGGGGGGGGGG",
+      "GGGGGGGGGGGGG",
+      "GGGGGGGGGGGGG",
+      "GGGGGGGGGGGGG",
+      "GLLGGGGGGGLLG",
+      "GGGGGGGGGGGGG",
+    },
+  },
+
+  materials = {
+    ["minecraft:stone_bricks"]     = 84,
+    ["minecraft:quartz_block"]     = 20,
+    ["minecraft:smooth_stone"]     = 88,
+    ["minecraft:glass"]            = 169,
+    ["minecraft:glowstone"]        = 4,
+    ["minecraft:iron_door"]        = 2,
+    ["minecraft:polished_blackstone"] = 0,
+  },
+
+  notes = {
+    "Turtle starts at SW corner (outside), facing North.",
+    "The entrance is on the South wall center.",
+    "Quartz pads (Q) mark machine placement spots.",
+    "Place an Iron Door + Button at the entrance.",
+    "Run Universal Cable under/around the floor.",
+    "Suggested power input: East or West wall.",
+    "Add ME Interface or RS Import Bus on South wall.",
+    "Machines needed (suggested):",
+    "  - Enrichment Chamber (2x ore → dust)",
+    "  - Metallurgic Infuser (iron+carbon → steel)",
+    "  - Energized Smelter (powered furnace)",
+    "  - Crusher (ore → dust alternative)",
+    "  - Electrolytic Separator (water → H2+O2)",
+    "  - Chemical Infuser (gas mixing)",
+    "  - Osmium Compressor (compressing)",
+    "  - Purification Chamber (3x ore)",
+    "  - Chemical Injection Chamber (3x ore)",
+  },
+}

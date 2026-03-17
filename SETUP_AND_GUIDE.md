@@ -73,21 +73,19 @@ Go to [github.com](https://github.com) and sign up for a free account.
 
 #### Step 3 — Push the files to GitHub
 
-**Option A — Use the included PowerShell script (easiest)**
+**Option A — Use the included bash script (easiest)**
 
-A script is included that handles everything: updating `install.lua`, committing, and pushing.
+A script is included that handles everything automatically: updating `install.lua`, committing, and pushing to `https://github.com/JacobBestwick/atm10-cctweaked`.
 
-1. Right-click `push_to_github.ps1` → **Run with PowerShell**
-2. Enter your GitHub username and repo name when prompted
-3. The script updates `BASE_URL` in `install.lua` automatically, commits all files, and pushes
-
-> If you see an "execution policy" error, open PowerShell and run:
-> `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
-> then re-run the script.
+1. Open **Git Bash** in the project folder (right-click the folder → **Git Bash Here**)
+2. Run: `bash push_to_github.sh`
+3. Enter a commit message when prompted (or press Enter for the default)
 
 > **First push?** GitHub will ask you to log in. Use a Personal Access Token instead of your password:
-> github.com → Settings → Developer settings → Personal access tokens → Generate new token
+> github.com → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token
 > Tick the **repo** scope. Paste the token as your password when prompted.
+
+> Git Bash is included with the standard [Git for Windows](https://git-scm.com/download/win) installer.
 
 **Option B — Git command line (manual)**
 
@@ -98,7 +96,7 @@ git init
 git add .
 git commit -m "Initial commit"
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git remote add origin https://github.com/JacobBestwick/atm10-cctweaked.git
 git push -u origin main
 ```
 
@@ -114,31 +112,24 @@ git push -u origin main
 
 #### Step 4 — Find your raw file URL
 
-Once pushed, your raw base URL will be:
+Your raw base URL is:
 ```
-https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/atm10
-```
-
-To verify it works, paste this into a browser and check it returns Lua code:
-```
-https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/atm10/hub.lua
+https://raw.githubusercontent.com/JacobBestwick/atm10-cctweaked/main/atm10
 ```
 
-#### Step 5 — Update install.lua
+To verify it works after pushing, open this in a browser — it should show Lua code:
+```
+https://raw.githubusercontent.com/JacobBestwick/atm10-cctweaked/main/atm10/hub.lua
+```
 
-Open [atm10/install.lua](atm10/install.lua) and edit line 17:
+#### Step 5 — install.lua is already configured
 
+`install.lua` already has the correct `BASE_URL` set:
 ```lua
--- Change this:
-local BASE_URL = "https://raw.githubusercontent.com/YOUR_NAME/YOUR_REPO/main/atm10"
-
--- To this (your actual details):
-local BASE_URL = "https://raw.githubusercontent.com/JohnDoe/atm10-cctweaked/main/atm10"
+local BASE_URL = "https://raw.githubusercontent.com/JacobBestwick/atm10-cctweaked/main/atm10"
 ```
 
-Save the file, then push the change to GitHub:
-- **GitHub Desktop:** it will show the change — commit and push
-- **Command line:** `git add atm10/install.lua && git commit -m "Set BASE_URL" && git push`
+No manual editing needed — the bash script keeps this up to date automatically.
 
 #### Step 6 — Upload install.lua to Pastebin
 

@@ -1,0 +1,108 @@
+-- mob_farm.blueprint
+-- ATM10 Dark Room Mob Farm Platform
+-- Used by: builder_turtle.lua
+--
+-- A 9x9 mob spawning platform with:
+--   - Solid floor (cobblestone)
+--   - 3-block dark room walls
+--   - Open ceiling (air)
+--   - Central hole for mob drop (2x2)
+--   - Trapdoors around the drop hole
+--
+-- Build facing: turtle faces the front wall (south)
+-- Dimensions: 9 wide x 9 deep x 4 tall
+-- Place the turtle at the NW corner floor level.
+
+return {
+  name        = "Dark Room Mob Farm",
+  description = "9x9 dark room spawning platform with 2x2 center drop hole.",
+  author      = "ATM10 CC:Tweaked Suite",
+  width       = 9,
+  height      = 4,
+  depth       = 9,
+
+  -- Palette: char → item name (or "air" for nothing)
+  palette = {
+    ["C"] = "minecraft:cobblestone",
+    ["S"] = "minecraft:stone",
+    ["T"] = "minecraft:oak_trapdoor",
+    ["H"] = "minecraft:iron_trapdoor",
+    [" "] = "air",
+    ["W"] = "minecraft:cobblestone_wall",
+    ["L"] = "minecraft:ladder",
+  },
+
+  -- Layers from bottom (Y=0) to top (Y=3)
+  -- Each layer: table of rows (Z=0 first row = south face of turtle)
+  -- Each row: string of chars, length = width (X left to right)
+  layers = {
+    -- Layer 0: Floor
+    {
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCTTTCCC",
+      "CCCT TCCC",   -- center is hollow (drop hole starts)
+      "CCCTTTCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+    },
+
+    -- Layer 1: Wall ring row 1 (bottom of walls)
+    {
+      "CCCCCCCCC",
+      "C       C",
+      "C       C",
+      "C   T   C",
+      "C T   T C",   -- open sides of drop hole
+      "C   T   C",
+      "C       C",
+      "C       C",
+      "CCCCCCCCC",
+    },
+
+    -- Layer 2: Wall ring row 2
+    {
+      "CCCCCCCCC",
+      "C       C",
+      "C       C",
+      "C       C",
+      "C       C",
+      "C       C",
+      "C       C",
+      "C       C",
+      "CCCCCCCCC",
+    },
+
+    -- Layer 3: Ceiling (solid to prevent sky light)
+    {
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+      "CCCCCCCCC",
+    },
+  },
+
+  -- Material totals (auto-calculated but provided for reference)
+  materials = {
+    ["minecraft:cobblestone"] = 108,  -- floor + walls + ceiling
+    ["minecraft:oak_trapdoor"] = 8,   -- around drop hole
+  },
+
+  -- Build notes shown before build starts
+  notes = {
+    "Place turtle at NW corner, floor level.",
+    "Turtle must face South (into the room).",
+    "Bring ~110 cobblestone + 8 trapdoors.",
+    "Drop hole center is at X=4,5 Z=4,5.",
+    "Build mob grinder mechanism below.",
+    "Remove torches/light after building!",
+    "Add hoppers below for loot collection.",
+  },
+}
