@@ -617,10 +617,10 @@ local ok, err = pcall(function()
 end)
 
 if not ok then
-  term.setTextColor and term.setTextColor(colors.red)
+  if term.isColor() then term.setTextColor(colors.red) end
   print("ATM10 Hub encountered a fatal error:")
   print(tostring(err))
-  term.setTextColor and term.setTextColor(colors.white)
+  if term.isColor() then term.setTextColor(colors.white) end
   print("Press any key to exit.")
   os.pullEvent("key")
 end

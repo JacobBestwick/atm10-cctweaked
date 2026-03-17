@@ -10,9 +10,9 @@ local ok, err = pcall(function()
   if fs.exists(HUB_PATH) then
     shell.run(HUB_PATH)
   else
-    term.setTextColor and term.setTextColor(colors.red)
+    if term.isColor() then term.setTextColor(colors.red) end
     printError("ATM10 Hub not found at " .. HUB_PATH)
-    term.setTextColor and term.setTextColor(colors.white)
+    if term.isColor() then term.setTextColor(colors.white) end
     print()
     print("To install the hub suite, run:")
     print("  /atm10/install.lua")
@@ -23,9 +23,9 @@ end)
 
 if not ok then
   -- Hub itself crashed; print the error but don't leave the device stuck.
-  term.setTextColor and term.setTextColor(colors.red)
+  if term.isColor() then term.setTextColor(colors.red) end
   printError("ATM10 Hub crashed: " .. tostring(err))
-  term.setTextColor and term.setTextColor(colors.white)
+  if term.isColor() then term.setTextColor(colors.white) end
   print()
   print("You can still use the shell normally.")
   print("To restart the hub manually: /atm10/hub.lua")
