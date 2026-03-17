@@ -139,6 +139,7 @@ step "Staging files..."
 git add atm10/lib/
 git add atm10/hub.lua
 git add atm10/install.lua
+git add atm10/data/default_config.lua
 git add atm10/programs/
 git add atm10/blueprints/
 git add SETUP_AND_GUIDE.md
